@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tigerquiz">
+<head>
+    <meta charset="=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiz Challenge</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS\style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" ></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/list.js"></script>  
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Quiz Challenge</h1>
+            <h3>Learn the facts before you gonna start a Quiz :-p</h3>
+            <strong>Tiger quiz</strong>
+        </div>
+        <div ng-controller="listctrl as list">
+            <div class="row">
+                <div class="col-sm-6" ng-repeat="tiger in list.data">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img ng-src="{{tiger.image_url}}" class="img-rounded img-responsive well-image">
+                            </div>
+                            <div class="col-sm-6">
+                                <h4> {{tiger.type}} </h4>
+                                <p> <strong>location: </strong>{{tiger.location}}</p>
+                                <p><strong> size:</strong>{{tiger.size}}</p>
+                                <button class="btn btn-primary pull-right" 
+                                        data-toggle="modal" 
+                                        data-target="#tiger-info" 
+                                        ng-click="list.changeActiveTiger(tiger)">Learn more </button>
+                            </div>
+                        </div>                       
+                    </div>
+            </div>
+        </div>
+          <div class="modal" id="tiger-info">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h2>{{list.activeTiger.type}}</h2>
+                      </div>
+                      <div class="modal-body">
+                          <div class="row">
+                              <div class="col-xs-8 col-xs-offse-2">
+                                  <img ng-src="{{list.activeTiger.image_url}}" class="img-rounded img-responsive">
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <p> <strong>location: </strong>{{list.activeTiger.location}}</p>
+                                  <p><strong> size:</strong>{{list.activeTiger.size}}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+        </div>
+</body>
+</html>
